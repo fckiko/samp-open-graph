@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { MetaService } from './meta.service';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +11,14 @@ import { Meta, Title } from '@angular/platform-browser';
 // }
 export class AppComponent implements OnInit {
 
-  constructor(private meta: Meta, private titleService: Title) { }
+  constructor(private metaService: MetaService) { }
 
   ngOnInit(): void {
-    this.setMetaTags();
-  }
-
-  setMetaTags(): void {
-    this.titleService.setTitle('My Angular Page');
-
-    this.meta.addTags([
-      { property: 'og:title', content: 'My Angular Page' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://dev.bidsnbuys.com' },
-      { property: 'og:image', content: 'https://img.jlmconsulting.services/fit-in/256x155/sls_1720675394886Image_1.png' },
-      { property: 'og:description', content: 'This is a description of my Angular page.' }
-    ]);
+    this.metaService.setMetaTags({
+      title: 'My Angular Page',
+      description: 'This is a description of my Angular page.',
+      image: 'https://www.example.com/image.jpg',
+      url: 'https://www.example.com/page.html'
+    });
   }
 }
