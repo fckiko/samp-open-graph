@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
     this.metaService.setMetaTags({
       title: 'My Angular Page',
       description: 'This is a description of my Angular page.',
-      image: 'https://www.example.com/image.jpg',
-      url: 'https://www.example.com/page.html'
+      image: 'https://img.jlmconsulting.services/fit-in/256x155/sls_1720675394886Image_1.png',
+      url: 'https://dev.bidsnbuys.com'
     });
   }
 }
