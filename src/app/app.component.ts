@@ -11,6 +11,7 @@ import { MetaService } from './meta.service';
 // }
 export class AppComponent implements OnInit {
 
+  title = 'samp-open-graph';
   constructor(private metaService: MetaService) { }
 
   ngOnInit(): void {
