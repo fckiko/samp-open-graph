@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/samp-open-graph",
+            "outputPath": "dist/samp-open-graph/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -97,6 +97,61 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/samp-open-graph/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "samp-open-graph:build:development",
+              "serverTarget": "samp-open-graph:server:development"
+            },
+            "production": {
+              "browserTarget": "samp-open-graph:build:production",
+              "serverTarget": "samp-open-graph:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "samp-open-graph:build:production",
+              "serverTarget": "samp-open-graph:server:production"
+            },
+            "development": {
+              "browserTarget": "samp-open-graph:build:development",
+              "serverTarget": "samp-open-graph:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
